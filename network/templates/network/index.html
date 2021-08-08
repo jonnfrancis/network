@@ -1,5 +1,43 @@
 {% extends "network/layout.html" %}
+{% load static %}
 
 {% block body %}
-    TODO
+    <div class="row justify-content-center" id="newPost">
+        <div class="form-group col-6">
+            <form action="{% url 'save_post'  %}" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <input type="submit" class="btn btn-primary col-2" value="Post">
+                    <input type="text" class="form-control col-10" name="content" placeholder="How are you today?">
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <div id="profile">
+        <div class="card text-center">
+            <div class="card-header">
+                Following
+                <div id="following-amount"></div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title" id="profile_username"></h5>
+                <a type="button" class="btn btn-outline-primary" id="follow-button"></a>
+            </div>
+            <div class="card-footer text-muted">
+                followers
+                <div id="followers-amount"></div>
+            </div>
+        </div>
+    </div>
+    <div id="pages" class="row justify-content-center">
+        <nav aria-label="Page navigation example">
+            <ul id="pagination" class="pagination"></ul>
+        </nav>
+    </div>
+    <div id="posts"></div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'network/script.js' %}"></script>
 {% endblock %}
